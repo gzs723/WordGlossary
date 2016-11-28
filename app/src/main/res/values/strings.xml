@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="umeng_socialize_text_qq_key">QQ</string>
+    <string name="umeng_deleauth">清除对应授权</string>
+    <string name="login">登录/注册</string>
+    <string name="message">消息中心</string>
+    <string name="homepage">个人主页</string>
+    <string name="basic_setup">基本设置</string>
+</resources>
