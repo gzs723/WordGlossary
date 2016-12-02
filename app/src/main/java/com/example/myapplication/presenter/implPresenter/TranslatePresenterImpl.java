@@ -11,6 +11,7 @@ import com.example.myapplication.presenter.implView.ITranslateFragment;
 import com.example.myapplication.util.HistoryUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import rx.Subscriber;
@@ -25,6 +26,7 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     private ITranslateFragment mITranslateFragment;
     private Context mContext;
     private List historylist;
+    HistoryQuerylmpl historyQuerylmpl;
 
     public TranslatePresenterImpl(ITranslateFragment translateFragment, Context context){
         this.mITranslateFragment =translateFragment;
@@ -85,7 +87,7 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     @Override
     public void loadHistoryData() {
 
-        HistoryQuerylmpl historyQuerylmpl=new HistoryQuerylmpl(mContext);
+        historyQuerylmpl=new HistoryQuerylmpl(mContext);
         historylist=historyQuerylmpl.query();
         HistoryUtil historyUtil=HistoryUtil.getInstance();
         historyUtil.setHistorylist(historylist);
@@ -94,6 +96,9 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
 
     @Override
     public void deleteHistorySql() {
+
+        historyQuerylmpl=new HistoryQuerylmpl(mContext);
+        historyQuerylmpl.deleteDateall();
 
     }
 }

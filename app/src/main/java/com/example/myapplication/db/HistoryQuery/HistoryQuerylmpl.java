@@ -47,7 +47,7 @@ public class HistoryQuerylmpl {
 
     public List query(){
 
-        Map historymap=new HashMap();
+
         List historylist=new ArrayList<>();
 
         SQLiteDatabase db=mDbHelper.getReadableDatabase();
@@ -74,7 +74,7 @@ public class HistoryQuerylmpl {
         try{
             if (c.moveToFirst()){
                 do {
-
+                    Map historymap=new HashMap();
                     historymap.put("id", c.getInt(0));
                     historymap.put("word",c.getString(1));
                     historymap.put("translate",c.getString(2));
@@ -89,6 +89,7 @@ public class HistoryQuerylmpl {
                     Log.e("err",e.getMessage());
                 }
             }
+
         }
         return  historylist;
     }

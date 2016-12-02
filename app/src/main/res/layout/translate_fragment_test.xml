@@ -18,15 +18,25 @@
             android:orientation="horizontal">
 
 
-            <EditText
+            <!--<EditText-->
+                <!--android:id="@+id/glossary_edit"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.8"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@drawable/background_translate"-->
+                <!--android:hint="请输入查询内容"-->
+                <!--android:inputType="textNoSuggestions"-->
+                <!--android:maxLines="1"/>-->
+            <com.example.myapplication.ui.ClearableEditText
                 android:id="@+id/glossary_edit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:layout_margin="10dp"
-                android:background="@drawable/background_translate"
                 android:hint="请输入查询内容"
                 android:inputType="textNoSuggestions"
+                android:background="@drawable/background_translate"
                 android:maxLines="1"/>
 
             <Button
@@ -69,7 +79,7 @@
              android:layout_height="match_parent"
              android:text="123"
              android:gravity="center"
-             android:visibility="gone"/>
+             android:visibility="visible"/>
 
 
         </LinearLayout>

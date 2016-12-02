@@ -69,8 +69,8 @@ public class UserFragment extends BaseFragment implements IUserFragment {
 
 
 
-    private void initview(){
 
+    private void initview(){
 
 
     }

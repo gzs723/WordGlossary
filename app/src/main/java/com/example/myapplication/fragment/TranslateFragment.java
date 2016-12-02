@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.WordListAdapter;
-import com.example.myapplication.db.HistoryQuery.HistoryQuerylmpl;
 import com.example.myapplication.presenter.implPresenter.TranslatePresenterImpl;
 import com.example.myapplication.presenter.implView.ITranslateFragment;
-import com.example.myapplication.util.HistoryUtil;
+import com.example.myapplication.ui.ClearableEditText;
+import com.example.myapplication.ui.onTapped;
 
 import java.util.List;
 
@@ -29,17 +28,22 @@ import butterknife.OnClick;
  * Created by 李思言 on 2016/11/12.
  */
 
-public class TranslateFragment extends BaseFragment implements ITranslateFragment {
+public class TranslateFragment extends BaseFragment implements ITranslateFragment,onTapped{
 
     private TranslatePresenterImpl mGlossaryPresenter;
     @BindView(R.id.glossary_edit)
-    EditText glossary_edit;
+    ClearableEditText glossary_edit;
     @BindView(R.id.recycleview)
     RecyclerView mRecyclerView;
     @BindView(R.id.prograss)
     ProgressBar mProgressBar;
     @BindView(R.id.translate_borde)
     TextView translate_borde;
+
+
+    private ClearableEditText mClearableEditText;
+
+
 
     @Nullable
     @Override
@@ -60,22 +64,37 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
         initView();
 
 
-
-
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
+        initData();
     }
 
     private void initView(){
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(new WordListAdapter(getContext()));
+        glossary_edit.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        glossary_edit.addFragment(TranslateFragment.this);
+                }
+
+                return false;
+            }
+        });
+
 
     }
+
+
 
     private void initData(){
 
@@ -88,8 +107,9 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     public void translate(){
 
         mGlossaryPresenter.getGlossary(glossary_edit.getText().toString());
-        mRecyclerView.setVisibility(View.VISIBLE);
-        translate_borde.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.GONE);
+        translate_borde.setVisibility(View.VISIBLE);
+
 
     }
 
@@ -120,8 +140,20 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
             sGlossary.append(s+"\n").toString();
         }
 
-        Log.d("Translate",sGlossary.toString());
+        translate_borde.setText(sGlossary);
+
+
+    }
+
+
+    @Override
+    public void jumpview(Boolean jumo) {
+
+        mRecyclerView.setVisibility(View.VISIBLE);
+        translate_borde.setVisibility(View.GONE);
 
 
     }
 }
+
+

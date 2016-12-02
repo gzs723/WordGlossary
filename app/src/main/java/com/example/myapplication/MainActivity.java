@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity{
 
                 if (currentMenuItem!=item||currentMenuItem==null){
                     //之前可以选，选中之后，不可选，读取完再选
-                    currentMenuItem.setCheckable(false);
+//                    currentMenuItem.setCheckable(false);
                     int id=item.getItemId();
                     SharePreferenceUtil.putNevigationItem(getApplication(),id);
                     currentMenuItem=item;

@@ -3,6 +3,7 @@ package com.example.myapplication.adapter;
 import android.content.Context;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         if (holder instanceof WordViewHolder){
 
+
+            Log.d("MyRun", String.valueOf(position));
             holder.wordtext.setText(historyUtil.getHistoryMap(position).get("word").toString());
             holder.translatetext.setText(historyUtil.getHistoryMap(position).get("translate").toString());
 
