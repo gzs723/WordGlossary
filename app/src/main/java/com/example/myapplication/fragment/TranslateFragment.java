@@ -18,6 +18,8 @@ import com.example.myapplication.presenter.implView.ITranslateFragment;
 import com.example.myapplication.ui.ClearableEditText;
 import com.example.myapplication.ui.onTapped;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,6 +45,8 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
 
     private ClearableEditText mClearableEditText;
 
+    private WordListAdapter mWordListAdapter;
+
 
 
     @Nullable
@@ -59,10 +63,11 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
         super.onViewCreated(view, savedInstanceState);
 
         mGlossaryPresenter=new TranslatePresenterImpl(this,getContext());
-
+        mWordListAdapter=new WordListAdapter(getContext(),mGlossaryPresenter.loadHistoryData());
         initData();
         initView();
 
+//        mGlossaryPresenter.deleteHistorySql();
 
     }
 
@@ -76,7 +81,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     private void initView(){
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.setAdapter(new WordListAdapter(getContext()));
+        mRecyclerView.setAdapter(mWordListAdapter);
         glossary_edit.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -101,6 +106,8 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
         mGlossaryPresenter.loadHistoryData();
 
     }
+
+
 
     @OnClick(R.id.translate_btn)
 
@@ -134,7 +141,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     public void updateGlossary(List<String> ydArrayList) {
 
         StringBuffer sGlossary=new StringBuffer("");
-        int i=1;
+
         for (String s:ydArrayList) {
 
             sGlossary.append(s+"\n").toString();
@@ -151,8 +158,8 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
 
         mRecyclerView.setVisibility(View.VISIBLE);
         translate_borde.setVisibility(View.GONE);
-
-
+        mWordListAdapter.setList(mGlossaryPresenter.loadHistoryData());
+        mWordListAdapter.notifyDataSetChanged();
     }
 }
 

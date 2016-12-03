@@ -8,10 +8,7 @@ import com.example.myapplication.bean.youdaobean.YouDaoBean;
 import com.example.myapplication.db.HistoryQuery.HistoryQuerylmpl;
 import com.example.myapplication.presenter.ITranslatePresenter;
 import com.example.myapplication.presenter.implView.ITranslateFragment;
-import com.example.myapplication.util.HistoryUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import rx.Subscriber;
@@ -85,12 +82,12 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     }
 
     @Override
-    public void loadHistoryData() {
+    public List loadHistoryData() {
 
         historyQuerylmpl=new HistoryQuerylmpl(mContext);
         historylist=historyQuerylmpl.query();
-        HistoryUtil historyUtil=HistoryUtil.getInstance();
-        historyUtil.setHistorylist(historylist);
+        
+        return historylist;
     }
 
 

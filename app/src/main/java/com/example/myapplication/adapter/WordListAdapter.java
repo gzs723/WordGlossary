@@ -1,7 +1,6 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.db.HistoryQuery.HistoryQuerylmpl;
-import com.example.myapplication.util.HistoryUtil;
+import com.example.myapplication.bean.youdaobean.HistoryWord;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,15 +28,24 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     private final LayoutInflater mInflater;
 
-    HistoryUtil historyUtil=HistoryUtil.getInstance();
 
-    public WordListAdapter(Context context){
+    List<HistoryWord> historyList=new ArrayList<HistoryWord>();
+
+    public WordListAdapter(Context context,List<HistoryWord> historyList){
 
 
         this.mContext=context;
 
         mInflater = LayoutInflater.from(context);
 
+        this.historyList=historyList;
+
+
+    }
+
+    public void setList(List l){
+
+        this.historyList=l;
 
     }
 
@@ -51,10 +61,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         if (holder instanceof WordViewHolder){
 
-
-            Log.d("MyRun", String.valueOf(position));
-            holder.wordtext.setText(historyUtil.getHistoryMap(position).get("word").toString());
-            holder.translatetext.setText(historyUtil.getHistoryMap(position).get("translate").toString());
+            holder.wordtext.setText(historyList.get(position).getWord());
+            holder.wordtext.setText(historyList.get(position).getTranslate());
 
         }
 
@@ -64,7 +72,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @Override
     public int getItemCount() {
 
-        return historyUtil.getHistoryList().size();
+        return historyList==null?0:historyList.size();
     }
 
     public static class WordViewHolder extends RecyclerView.ViewHolder{

@@ -21,7 +21,7 @@ public interface ITranslatePresenter extends BasePresenter {
     void getHistorySql(String word);
 
 
-    void loadHistoryData();
+    List loadHistoryData();
 
     //删除数据
 

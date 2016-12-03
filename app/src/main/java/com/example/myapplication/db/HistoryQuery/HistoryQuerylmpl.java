@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.myapplication.bean.youdaobean.HistoryWord;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +50,7 @@ public class HistoryQuerylmpl {
     public List query(){
 
 
-        List historylist=new ArrayList<>();
+        List historylist=new ArrayList<HistoryWord>();
 
         SQLiteDatabase db=mDbHelper.getReadableDatabase();
 
@@ -74,11 +76,11 @@ public class HistoryQuerylmpl {
         try{
             if (c.moveToFirst()){
                 do {
-                    Map historymap=new HashMap();
-                    historymap.put("id", c.getInt(0));
-                    historymap.put("word",c.getString(1));
-                    historymap.put("translate",c.getString(2));
-                    historylist.add(historymap);
+                    HistoryWord historyWord=new HistoryWord();
+                    historyWord.setId(c.getInt(0));
+                    historyWord.setWord(c.getString(1));
+                    historyWord.setTranslate(c.getString(2));
+                    historylist.add(historyWord);
                 }while (c.moveToNext());
             }
         }finally {

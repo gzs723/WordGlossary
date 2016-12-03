@@ -33,7 +33,6 @@ public class ApiManage {
 
         if (mYoudaoApi==null){
 
-            Log.d("Test","dads");
 
             synchronized (YoudaoApi.class){
 
