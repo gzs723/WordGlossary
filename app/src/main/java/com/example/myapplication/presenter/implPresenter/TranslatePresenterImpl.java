@@ -86,7 +86,7 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
 
         historyQuerylmpl=new HistoryQuerylmpl(mContext);
         historylist=historyQuerylmpl.query();
-        
+
         return historylist;
     }
 

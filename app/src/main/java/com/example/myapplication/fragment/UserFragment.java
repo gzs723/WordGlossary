@@ -41,8 +41,6 @@ public class UserFragment extends BaseFragment implements IUserFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Log.d("User","onCreate");
-
        View view=inflater.inflate(R.layout.activity_user,container,false);
 
         ButterKnife.bind(this,view);
@@ -54,7 +52,6 @@ public class UserFragment extends BaseFragment implements IUserFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mUserPresenterlmpl=new UserPresenterlmpl(this,getContext());
-        Log.d("User","onViewCreated");
 
     }
 
@@ -64,7 +61,6 @@ public class UserFragment extends BaseFragment implements IUserFragment {
         super.onResume();
         initview();
         loaddate();
-        Log.d("User","onResume");
     }
 
 
@@ -123,8 +119,6 @@ public class UserFragment extends BaseFragment implements IUserFragment {
     public void onDestroy() {
 
         super.onDestroy();
-
-        Log.d("User","onDestroy");
 
     }
 }

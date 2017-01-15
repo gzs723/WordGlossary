@@ -85,12 +85,15 @@ public class ClearableEditText extends EditText implements  View.OnFocusChangeLi
             if (tappedX) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     setText("");
+                    clearFocus();
+                    setFocusable(false);
                     this.mOnTapped.jumpview(true);
                 }
             }
         }
         return super.onTouchEvent(event);
     }
+
 
     //焦点
     @Override

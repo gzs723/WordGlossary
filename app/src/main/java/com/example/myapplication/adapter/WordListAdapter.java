@@ -61,8 +61,10 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         if (holder instanceof WordViewHolder){
 
-            holder.wordtext.setText(historyList.get(position).getWord());
-            holder.wordtext.setText(historyList.get(position).getTranslate());
+
+            Log.d("wordadapter","word"+historyList.get(position).getWord());
+            holder.wordtext.setText(historyList.get(historyList.size()-position-1).getWord());
+            holder.translatetext.setText(historyList.get(historyList.size()-position-1).getTranslate());
 
         }
 

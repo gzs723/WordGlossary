@@ -61,6 +61,7 @@ public class HistoryQuerylmpl {
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_TRANSLATE
 
         };
+        //读取指定数据
 
         Cursor c=db.query(
                 HistoryQueryContract.HistoryQueryEntry.TABLE_NAME,
