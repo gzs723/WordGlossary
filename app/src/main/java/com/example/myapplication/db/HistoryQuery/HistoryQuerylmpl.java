@@ -97,14 +97,17 @@ public class HistoryQuerylmpl {
         return  historylist;
     }
 
-    public boolean hasWord(String name){
+    public void hasWord(String word){
 
         SQLiteDatabase db=mDbHelper.getReadableDatabase();
-        boolean exist=false;
+
+        Log.d("HistoryQuerylmpl","do it");
 
         String[] projection={
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD,
         };
+
+        final String selection= HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD+"=";
 
         Cursor c=db.query(
                 HistoryQueryContract.HistoryQueryEntry.TABLE_NAME,
@@ -118,11 +121,6 @@ public class HistoryQuerylmpl {
 
         try{
             if (c.moveToFirst()){
-                do {
-                   if (name.equals(c.getString(0))){
-                       exist=true;
-                   }
-                }while (c.moveToNext());
             }
         }finally {
             if (c!=null){
@@ -133,9 +131,6 @@ public class HistoryQuerylmpl {
                 }
             }
         }
-
-
-        return exist;
     }
 
     public void deleteById(int id){
@@ -146,9 +141,10 @@ public class HistoryQuerylmpl {
 
     }
 
-    private void deleteByName(String name){
+    public void deleteByWord(String word){
 
-        String selection= HistoryQueryContract.HistoryQueryEntry._ID+HistoryReaderDbHelper.EQUAL+name;
+        String selection= HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD+HistoryReaderDbHelper.EQUAL
+                +HistoryReaderDbHelper.SINGLE+word+HistoryReaderDbHelper.SINGLE;
         SQLiteDatabase db=mDbHelper.getWritableDatabase();
         db.delete(HistoryQueryContract.HistoryQueryEntry.TABLE_NAME,selection,null);
 

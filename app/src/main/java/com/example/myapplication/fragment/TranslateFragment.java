@@ -83,10 +83,11 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
             @Override
             public boolean onTouch(View view, MotionEvent event) {
 
-
+                //触发按下事件
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_UP:
                         glossary_edit.addFragment(TranslateFragment.this);
+
                 }
 
                 return false;
@@ -97,6 +98,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
             @Override
             public void onClick(View view) {
                 Log.d("Clear","clear");
+                //软键盘回复
                 glossary_edit.setFocusable(true);
                 glossary_edit.setFocusableInTouchMode(true);
                 glossary_edit.requestFocus();
@@ -120,6 +122,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
         mGlossaryPresenter.getGlossary(glossary_edit.getText().toString());
         mRecyclerView.setVisibility(View.GONE);
         translate_borde.setVisibility(View.VISIBLE);
+        //隐藏keyboard
         hideSoftKeyboard(glossary_edit,getActivity());
 
     }
@@ -184,6 +187,8 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
             imm.showSoftInput(editText, 0);
         }
     }
+
+
 
 }
 

@@ -17,6 +17,7 @@ public class HistoryReaderDbHelper extends SQLiteOpenHelper {
     static final String TEXT_TYPE = " TEXT";
     static final String COMMA_SEP = ",";
     static final String EQUAL= "=";
+    static final String SINGLE="'";
 
     static final String SQL_CREATE_ENTRIES="CREATE TABLE "+ HistoryQueryContract.HistoryQueryEntry.TABLE_NAME+"("+
             HistoryQueryContract.HistoryQueryEntry._ID+" INTEGER PRIMARY KEY,"+

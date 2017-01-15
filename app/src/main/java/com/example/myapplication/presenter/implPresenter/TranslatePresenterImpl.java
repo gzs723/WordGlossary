@@ -72,6 +72,7 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     public void addHistorySql(String word,String translate) {
 
         HistoryQuerylmpl historyQuerylmpl=new HistoryQuerylmpl(mContext);
+        historyQuerylmpl.deleteByWord(word);
         historyQuerylmpl.insert(word, translate);
 
     }
