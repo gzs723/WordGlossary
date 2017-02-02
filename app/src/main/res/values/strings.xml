@@ -6,4 +6,12 @@
     <string name="message">消息中心</string>
     <string name="homepage">个人主页</string>
     <string name="basic_setup">基本设置</string>
+
+
+
+    //navi
+
+    <string name="navi_login">登录</string>
+    <string name="news">新闻</string>
+    <string name="translate">单词查询</string>
 </resources>

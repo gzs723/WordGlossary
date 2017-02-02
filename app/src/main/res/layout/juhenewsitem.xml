@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id_newscardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="4dp"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/news_image"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.25"
+            android:src="@mipmap/ic_launcher"
+            android:padding="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.75">
+
+
+            <TextView
+                android:id="@+id/news_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="美民盼新川普第一夫人能发挥正能量　为弱势发声"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:textSize="16dp"
+                />
+
+            <TextView
+                android:id="@+id/news_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="碳客地理"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"/>
+
+
+            <TextView
+                android:id="@+id/news_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-01-19 09:03"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
+
+
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

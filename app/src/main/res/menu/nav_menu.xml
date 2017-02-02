@@ -4,11 +4,15 @@
            <item
                android:id="@+id/translate_fragment"
                android:checkable="true"
-               android:title="单词查询"/>
+               android:title="@string/translate"/>
         <item
             android:id="@+id/login_fragment"
             android:checkable="true"
-            android:title="登录"/>
+            android:title="@string/navi_login"/>
+        <item
+            android:id="@+id/news_fragment"
+            android:checkable="true"
+            android:title="@string/news"></item>
     </group>
 
 </menu>

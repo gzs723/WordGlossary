@@ -9,9 +9,7 @@ import android.util.Log;
 import com.example.myapplication.bean.youdaobean.HistoryWord;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 李思言 on 2016/11/26.

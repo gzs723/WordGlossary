@@ -54,5 +54,31 @@ public class ApiManage {
     }
 
 
+    public JuHeNewsApi mJuHeNewsApi;
+
+    public JuHeNewsApi getJuHeNewsApi(){
+        if (mJuHeNewsApi==null)
+
+            synchronized (JuHeNewsApi.class){
+                if (mJuHeNewsApi==null){
+                    mJuHeNewsApi=new Retrofit.Builder()
+                                .baseUrl("http://v.juhe.cn/toutiao/")
+                                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                                .client(okHttpClient)
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build().create(JuHeNewsApi.class);
+                }
+
+
+            }
+
+        return mJuHeNewsApi;
+    }
+
+
+
+
+
+
 
 }

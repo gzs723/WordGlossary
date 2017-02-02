@@ -6,7 +6,7 @@ package com.example.myapplication.presenter;
 
 public interface INewsPresenter extends BasePresenter{
 
-    void getPicture();
+        void getNews();
 
-    void getTitle();
+
 }

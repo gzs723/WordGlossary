@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,7 +52,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.translate_fragment_test, container, false);
+        View view = inflater.inflate(R.layout.translate_fragment, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -61,9 +60,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mGlossaryPresenter = new TranslatePresenterImpl(this, getContext());
-        mWordListAdapter = new WordListAdapter(getContext(), mGlossaryPresenter.loadHistoryData());
         initData();
         initView();
     }
@@ -78,6 +75,9 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     private void initView() {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
+        mRecyclerView.setHasFixedSize(true);
+        mWordListAdapter = new WordListAdapter(getContext(), mGlossaryPresenter.loadHistoryData());
         mRecyclerView.setAdapter(mWordListAdapter);
         glossary_edit.setOnTouchListener(new View.OnTouchListener() {
             @Override

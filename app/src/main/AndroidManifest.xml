@@ -56,6 +56,7 @@
                 <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.NewsWebViewActivity"/>
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:screenOrientation="portrait"
