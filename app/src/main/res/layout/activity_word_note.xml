@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="#d9942b"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_note_textview">
+
+
+        <LinearLayout
+            android:id="@+id/word_layout"
+            android:layout_marginTop="20dp"
+            android:textSize="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+       <TextView
+            android:id="@+id/word_text"
+            android:textSize="35dp"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"/>
+            >
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/word_phonetic"
+            android:layout_marginTop="30dp"
+            android:textSize="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/word_layout"
+            android:layout_alignParentStart="true"/>
+
+
+        <TextView
+            android:id="@+id/word_explains"
+            android:layout_marginTop="30dp"
+            android:textSize="35dp"
+            android:layout_below="@+id/word_phonetic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.example.myapplication.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +16,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activity.WordNoteActivity;
 import com.example.myapplication.adapter.WordListAdapter;
+import com.example.myapplication.bean.youdaobean.HistoryWord;
 import com.example.myapplication.presenter.implPresenter.TranslatePresenterImpl;
 import com.example.myapplication.presenter.implView.ITranslateFragment;
 import com.example.myapplication.ui.ClearableEditText;
@@ -47,6 +51,10 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
 
     private WordListAdapter mWordListAdapter;
 
+    final String DELETE="delete";
+
+    final String VIEW="view";
+
 
     @Nullable
     @Override
@@ -69,7 +77,6 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     @Override
     public void onResume() {
         super.onResume();
-        initData();
     }
 
     private void initView() {
@@ -93,11 +100,28 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
                 return false;
             }
         });
+        mWordListAdapter.setOnItemClickListener(new WordListAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View v, String word, int position, String type) {
+
+                switch (type){
+                    case DELETE:
+                        mGlossaryPresenter.deleteHistorySql(word);
+                        mWordListAdapter.removelist(position);
+                        mWordListAdapter.notifyDataSetChanged();
+                        break;
+                    case VIEW:
+                        Intent intent=new Intent(getContext(), WordNoteActivity.class);
+                        intent.putExtra("word",word);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
 
         glossary_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Clear","clear");
                 //软键盘回复
                 glossary_edit.setFocusable(true);
                 glossary_edit.setFocusableInTouchMode(true);
@@ -109,9 +133,10 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     }
 
 
+
     private void initData() {
 
-        mGlossaryPresenter.loadHistoryData();
+//        mGlossaryPresenter.loadHistoryData();
 
     }
 
@@ -126,6 +151,8 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
         hideSoftKeyboard(glossary_edit,getActivity());
 
     }
+
+
 
 
 

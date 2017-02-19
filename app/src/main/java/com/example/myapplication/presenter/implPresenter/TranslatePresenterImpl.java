@@ -28,6 +28,7 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     public TranslatePresenterImpl(ITranslateFragment translateFragment, Context context){
         this.mITranslateFragment =translateFragment;
         mContext=context;
+        historyQuerylmpl=HistoryQuerylmpl.newInstance(context);
     }
 
     @Override
@@ -52,14 +53,9 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
             @Override
             public void onNext(YouDaoBean bean) {
 
-
                 mITranslateFragment.hideProgressDialog();
-
-                addHistorySql(word,bean.getBasic().getExplains().get(0));
+                addHistorySql(bean);
                 mITranslateFragment.updateGlossary(bean.getBasic().getExplains());
-
-
-
             }
 
 
@@ -69,11 +65,11 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     }
 
     @Override
-    public void addHistorySql(String word,String translate) {
+    public void addHistorySql(YouDaoBean youDaoBean) {
 
-        HistoryQuerylmpl historyQuerylmpl=new HistoryQuerylmpl(mContext);
-        historyQuerylmpl.deleteByWord(word);
-        historyQuerylmpl.insert(word, translate);
+        //HistoryQuerylmpl historyQuerylmpl=new HistoryQuerylmpl(mContext);
+        historyQuerylmpl.deleteByWord(youDaoBean.getQuery());
+        historyQuerylmpl.insert(youDaoBean);
 
     }
 
@@ -85,18 +81,16 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     @Override
     public List loadHistoryData() {
 
-        historyQuerylmpl=new HistoryQuerylmpl(mContext);
-        historylist=historyQuerylmpl.query();
+        //historyQuerylmpl=new HistoryQuerylmpl(mContext);
+        historylist=historyQuerylmpl.queryHistory();
 
         return historylist;
     }
 
 
     @Override
-    public void deleteHistorySql() {
+    public void deleteHistorySql(String word) {
 
-        historyQuerylmpl=new HistoryQuerylmpl(mContext);
-        historyQuerylmpl.deleteDateall();
-
+        historyQuerylmpl.updateHistory(word);
     }
 }

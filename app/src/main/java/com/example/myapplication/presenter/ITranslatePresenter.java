@@ -1,5 +1,7 @@
 package com.example.myapplication.presenter;
 
+import com.example.myapplication.bean.youdaobean.YouDaoBean;
+
 import java.util.List;
 
 /**
@@ -14,7 +16,7 @@ public interface ITranslatePresenter extends BasePresenter {
 
     //增添数据
 
-    void addHistorySql(String word,String translate);
+    void addHistorySql(YouDaoBean youDaoBean);
 
     //查询数据
 
@@ -25,6 +27,6 @@ public interface ITranslatePresenter extends BasePresenter {
 
     //删除数据
 
-    void deleteHistorySql();
+    void deleteHistorySql(String word);
 
 }

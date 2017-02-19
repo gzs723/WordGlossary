@@ -16,9 +16,13 @@ public final class HistoryQueryContract {
 
 
         public static final String TABLE_NAME="history";
-        public static final String COLUMN_NAME_WORD="word";
-        public static final String COLUMN_NAME_TRANSLATE="translate";
 
+        public static final String COLUMN_NAME_WORD="word";
+        public static final String COLUMN_NAME_HISTORY="history";
+        public static final String COLUMN_NAME_EXPLAINS="explains";
+        public static final String COLUMN_NAME_TRANSLATE="translate";
+        public static final String COLUMN_NAME_COLLECTION="collection";
+        public static final String COLUMN_NAME_PHONETIC="phonetic";
 
 
 

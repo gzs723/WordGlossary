@@ -2,7 +2,8 @@ package com.example.myapplication.presenter.implPresenter;
 
 import android.util.Log;
 
-
+import com.example.myapplication.activity.NewsWebViewActivity;
+import com.example.myapplication.presenter.INewsPresenter;
 import com.example.myapplication.presenter.INewsWebPresenter;
 import com.example.myapplication.presenter.implView.INewsWebActivity;
 
@@ -58,7 +59,6 @@ public class NewsWebPresenterImpl extends BasePresenterImpl implements INewsWebP
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-
 
                         String body = response.body().string();
                         Document document = Jsoup.parse(body);

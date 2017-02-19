@@ -10,7 +10,15 @@ public class Basic {
 
     private List<String> explains;
 
+    public String getPhonetic() {
+        return "["+phonetic+"]";
+    }
 
+    public void setPhonetic(String phonetic) {
+        this.phonetic = phonetic;
+    }
+
+    private String phonetic;
 
     public List<String> getExplains() {
         return explains;

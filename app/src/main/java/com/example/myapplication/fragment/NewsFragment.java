@@ -1,13 +1,17 @@
 package com.example.myapplication.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activity.NewsWebViewActivity;
@@ -33,6 +37,10 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
 
     @BindView(R.id.news_recycleview)
     RecyclerView mRecyclerView;
+    @BindView(R.id.prograss)
+    ProgressBar mProgressBar;
+    @BindView(R.id.news_refresh)
+    SwipeRefreshLayout mRefreshLayout;
 
 
     @Nullable
@@ -50,19 +58,17 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
         super.onViewCreated(view, savedInstanceState);
         initdata();
         initView();
-
+        initPullRefresh();
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+
 
 
     @Override
     public void updateNews(JuHeNewsBean juHeNewsBean) {
 
+        hideProgressDialog();
         mNewsListAdapter.addItems((ArrayList<NewsData>) juHeNewsBean.getResult().getData());
 
     }
@@ -70,10 +76,15 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
     @Override
     public void showProgressDialog() {
 
+       mProgressBar.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void hideProgressDialog() {
+
+       mProgressBar.setVisibility(View.INVISIBLE);
+       mRefreshLayout.setRefreshing(false);
 
     }
 
@@ -91,6 +102,8 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
 
     private void initView(){
 
+
+        mRefreshLayout.setColorSchemeColors(Color.RED);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mNewsListAdapter=new NewsListAdapter(getContext());
         mRecyclerView.setHasFixedSize(true);
@@ -105,8 +118,18 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
             }
         });
 
+        showProgressDialog();
         loadData();
 
+    }
+
+    private void initPullRefresh(){
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+            }
+        });
     }
 
 
@@ -116,5 +139,9 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
     }
 
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mNewsPresenterlmpl.unsubcrible();
+    }
 }

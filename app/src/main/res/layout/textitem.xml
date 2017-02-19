@@ -2,54 +2,90 @@
 <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/id_cardview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        card_view:cardCornerRadius="4dp"
-        >
-<LinearLayout
+    android:id="@+id/id_cardview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="4dp"
+    >
 
-    <LinearLayout
+    <com.example.myapplication.ui.SwipeLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/word_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="1233"/>
-        <TextView
-            android:id="@+id/phonetic_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="123"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/translate_text"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="12333"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/word_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1233"/>
+                <TextView
+                    android:id="@+id/phonetic_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="123"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/translate_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="12333"/>
+            </LinearLayout>
 
 
-</LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="80dp">
+         <ImageButton
+             android:id="@+id/delete_button"
+             android:background="#ff0000"
+             android:layout_width="50dp"
+             android:layout_height="80dp"
+             android:src="@drawable/trash"/>
+
+         <ImageButton
+                android:id="@+id/view_button"
+                android:background="#c2c2c2"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:src="@drawable/magnifier"/>
+         <ImageButton
+                android:id="@+id/star_button"
+                android:background="#aaffff"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:src="@drawable/star"/>
+
+        </LinearLayout>
+
+
+    </com.example.myapplication.ui.SwipeLayout>
+
 
 
 </android.support.v7.widget.CardView>

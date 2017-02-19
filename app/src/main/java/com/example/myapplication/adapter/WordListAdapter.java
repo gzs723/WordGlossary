@@ -1,15 +1,23 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activity.WordNoteActivity;
+import com.example.myapplication.bean.newsbean.NewsData;
 import com.example.myapplication.bean.youdaobean.HistoryWord;
+import com.example.myapplication.ui.SwipeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +36,12 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     private final LayoutInflater mInflater;
 
+    final String DELETE="delete";
+
+    final String VIEW="view";
+
+    private  OnRecyclerViewItemClickListener mItemClickListener=null;
+
 
     List<HistoryWord> historyList=new ArrayList<HistoryWord>();
 
@@ -43,9 +57,19 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     }
 
+    public interface OnRecyclerViewItemClickListener {
+        void onItemClick(View v,String word,int position,String type);
+    }
+
     public void setList(List l){
 
         this.historyList=l;
+
+    }
+
+    public void removelist(int position){
+
+        this.historyList.remove(position);
 
     }
 
@@ -53,18 +77,46 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new WordViewHolder(mInflater.inflate(R.layout.textitem,parent,false));
+        View v=mInflater.inflate(R.layout.textitem,parent,false);
+
+
+        return new WordViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(WordViewHolder holder, int position) {
+    public void onBindViewHolder(final WordViewHolder holder, final int position) {
 
         if (holder instanceof WordViewHolder){
 
-
-            Log.d("wordadapter","word"+historyList.get(position).getWord());
             holder.wordtext.setText(historyList.get(historyList.size()-position-1).getWord());
             holder.translatetext.setText(historyList.get(historyList.size()-position-1).getTranslate());
+            holder.phonetictext.setText(historyList.get(historyList.size()-position-1).getPhonetic());
+            SwipeLayout.addSwipeView(holder.mSwipeLayout);
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mItemClickListener!=null){
+                        SwipeLayout.removeSwipeView(holder.mSwipeLayout);
+                        mItemClickListener.onItemClick(v,holder.wordtext.getText().toString(),
+                                historyList.size()-position-1,DELETE);
+
+                    }
+                }
+            });
+            holder.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mItemClickListener!=null){
+                        SwipeLayout.removeSwipeView(holder.mSwipeLayout);
+                        mItemClickListener.onItemClick(v,holder.wordtext.getText().toString(),
+                                historyList.size()-position-1,VIEW);
+
+
+                    }
+                }
+            });
+
+
 
         }
 
@@ -77,6 +129,14 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         return historyList==null?0:historyList.size();
     }
 
+
+
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener onItemClickListener) {
+        mItemClickListener = onItemClickListener;
+    }
+
+
+
     public static class WordViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.word_text)
@@ -85,6 +145,14 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         TextView phonetictext;
         @BindView(R.id.translate_text)
         TextView translatetext;
+        @BindView(R.id.delete_button)
+        ImageView delete;
+        @BindView(R.id.view_button)
+        ImageView view;
+        @BindView(R.id.swipe)
+        SwipeLayout mSwipeLayout;
+
+
 
         public WordViewHolder(View itemView) {
 

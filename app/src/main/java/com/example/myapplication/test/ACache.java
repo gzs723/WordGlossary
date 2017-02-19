@@ -89,10 +89,14 @@ public class ACache {
      * Since writing about the file is complete, and its close method is called,
      * its contents will be registered in the cache. Example of use:
      *
-     * ACache cache = new ACache(this) try { OutputStream stream =
-     * cache.put("myFileName") stream.write("some bytes".getBytes()); // now
-     * update cache! stream.close(); } catch(FileNotFoundException e){
-     * e.printStackTrace() }
+     * ACache cache = new ACache(this) try {
+     * OutputStream stream =cache.put("myFileName")
+     * stream.write("some bytes".getBytes()); // now
+     * update cache! stream.close();
+     * }
+     * catch(FileNotFoundException e){
+     * e.printStackTrace()
+     * }
      */
     class xFileOutputStream extends FileOutputStream {
         File file;

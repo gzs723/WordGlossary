@@ -22,14 +22,14 @@ import butterknife.ButterKnife;
  * Created by 李思言 on 2017/1/20.
  */
 
-public class NewsWebViewActivity extends  BaseActivity implements INewsWebActivity {
+public class NewsWebViewActivity extends BaseActivity implements INewsWebActivity {
 
     NewsWebPresenterImpl mPresenter;
     private String url;
-//    private String html;
+
     @BindView(R.id.juhe_news_webview)
     WebView mWebView;
-//可能的加载异步问题
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

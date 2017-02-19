@@ -57,6 +57,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.NewsWebViewActivity"/>
+        <activity android:name=".activity.WordNoteActivity"/>
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:screenOrientation="portrait"
