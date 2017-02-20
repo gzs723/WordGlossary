@@ -55,6 +55,8 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
 
     final String VIEW="view";
 
+    final String COLLECT="collect";
+
 
     @Nullable
     @Override
@@ -115,6 +117,9 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
                         intent.putExtra("word",word);
                         startActivity(intent);
                         break;
+                    case COLLECT:
+                        mGlossaryPresenter.updateCollect(word);
+                        Toast.makeText(getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
                 }
             }
         });

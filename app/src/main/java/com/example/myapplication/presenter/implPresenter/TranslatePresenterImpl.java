@@ -67,7 +67,6 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     @Override
     public void addHistorySql(YouDaoBean youDaoBean) {
 
-        //HistoryQuerylmpl historyQuerylmpl=new HistoryQuerylmpl(mContext);
         historyQuerylmpl.deleteByWord(youDaoBean.getQuery());
         historyQuerylmpl.insert(youDaoBean);
 
@@ -81,7 +80,6 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     @Override
     public List loadHistoryData() {
 
-        //historyQuerylmpl=new HistoryQuerylmpl(mContext);
         historylist=historyQuerylmpl.queryHistory();
 
         return historylist;
@@ -92,5 +90,12 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     public void deleteHistorySql(String word) {
 
         historyQuerylmpl.updateHistory(word);
+    }
+
+    @Override
+    public void updateCollect(String word) {
+
+        historyQuerylmpl.updateCollection(word);
+
     }
 }

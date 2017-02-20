@@ -43,7 +43,6 @@ public class WordNoteActivity extends BaseActivity implements IWordNoteActivity 
 
 
         word=getIntent().getStringExtra("word");
-        Log.d("123",word);
         wordNotePresenterlmpl.getWordNote(word);
     }
 
@@ -52,7 +51,6 @@ public class WordNoteActivity extends BaseActivity implements IWordNoteActivity 
     @Override
     public void showWordNote(HistoryWord historyWord) {
 
-        Log.d("WordNoteActivity","??"+historyWord.getWord());
         wordtext.setText("单词 ："+historyWord.getWord());
         wordphonetic.setText("音标 :"+historyWord.getPhonetic());
         wordexplains.setText("译义 ："+historyWord.getExplains());

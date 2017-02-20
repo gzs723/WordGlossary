@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.myapplication.fragment.NewsFragment;
 import com.example.myapplication.fragment.TranslateFragment;
 import com.example.myapplication.fragment.UserFragment;
+import com.example.myapplication.fragment.WordNoteFragment;
 import com.example.myapplication.util.SharePreferenceUtil;
 
 import butterknife.BindView;
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.news_fragment:
                 fragment = new NewsFragment();
+                break;
+
+            case R.id.star_fragment:
+                fragment=new WordNoteFragment();
                 break;
             default:
                 fragment=new TranslateFragment();

@@ -11,22 +11,16 @@ import java.util.List;
 public interface ITranslatePresenter extends BasePresenter {
 
 
-    //更新数据
     void getGlossary(String word);
-
-    //增添数据
 
     void addHistorySql(YouDaoBean youDaoBean);
 
-    //查询数据
-
     void getHistorySql(String word);
-
 
     List loadHistoryData();
 
-    //删除数据
-
     void deleteHistorySql(String word);
+
+    void updateCollect(String word);
 
 }

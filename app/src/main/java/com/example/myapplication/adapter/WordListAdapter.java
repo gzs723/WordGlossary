@@ -40,6 +40,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     final String VIEW="view";
 
+    final String COLLECT="collect";
+
     private  OnRecyclerViewItemClickListener mItemClickListener=null;
 
 
@@ -116,6 +118,19 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
                 }
             });
 
+            holder.star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mItemClickListener!=null){
+
+                        Log.d("wordlist","star");
+                        SwipeLayout.removeSwipeView(holder.mSwipeLayout);
+                        mItemClickListener.onItemClick(v,holder.wordtext.getText().toString(),
+                                historyList.size()-position-1,COLLECT);
+                    }
+                }
+            });
+
 
 
         }
@@ -151,6 +166,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         ImageView view;
         @BindView(R.id.swipe)
         SwipeLayout mSwipeLayout;
+        @BindView(R.id.star_button)
+        ImageView star;
 
 
 
