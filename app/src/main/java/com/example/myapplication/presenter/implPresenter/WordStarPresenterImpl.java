@@ -37,6 +37,7 @@ public class WordStarPresenterImpl extends BasePresenterImpl implements IWoreSta
     @Override
     public void updateCollect(String word) {
 
+        historyQuerylmpl.updateCollection(word,0);
     }
 
 }

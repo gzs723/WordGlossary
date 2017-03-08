@@ -95,7 +95,7 @@ public class TranslatePresenterImpl extends BasePresenterImpl implements ITransl
     @Override
     public void updateCollect(String word) {
 
-        historyQuerylmpl.updateCollection(word);
+        historyQuerylmpl.updateCollection(word,1);
 
     }
 }

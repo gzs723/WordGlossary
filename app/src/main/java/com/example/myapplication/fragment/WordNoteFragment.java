@@ -1,5 +1,6 @@
 package com.example.myapplication.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,12 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.activity.WordNoteActivity;
+import com.example.myapplication.adapter.StarNoteAdapter;
 import com.example.myapplication.adapter.WordListAdapter;
 import com.example.myapplication.presenter.implPresenter.WordStarPresenterImpl;
 import com.example.myapplication.presenter.implView.IWordStarFragment;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,12 +29,15 @@ import butterknife.ButterKnife;
 
 public class WordNoteFragment extends BaseFragment implements IWordStarFragment {
 
-    private WordListAdapter mWordListAdapter;
+    private StarNoteAdapter mStarNoteAdapter;
     private WordStarPresenterImpl mStarPresenter;
 
     @BindView(R.id.star_recycleview)
     RecyclerView mRecyclerView;
 
+    final String DELETE="delete";
+
+    final String VIEW="view";
 
     @Nullable
     @Override
@@ -53,8 +61,26 @@ public class WordNoteFragment extends BaseFragment implements IWordStarFragment 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         mRecyclerView.setHasFixedSize(true);
-        mWordListAdapter = new WordListAdapter(getContext(),mStarPresenter.loadStarData());
-        mRecyclerView.setAdapter(mWordListAdapter);
+        mStarNoteAdapter=new StarNoteAdapter(getContext(),mStarPresenter.loadStarData());
+        mRecyclerView.setAdapter(mStarNoteAdapter);
+        mStarNoteAdapter.setOnItemClickListener(new StarNoteAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View v, String word, int position, String type) {
+                switch (type){
+                    case DELETE:
+                        mStarPresenter.updateCollect(word);
+                        mStarNoteAdapter.removelist(position);
+                        mStarNoteAdapter.notifyDataSetChanged();
+                        break;
+                    case VIEW:
+                        Intent intent=new Intent(getContext(), WordNoteActivity.class);
+                        intent.putExtra("word",word);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -63,7 +89,6 @@ public class WordNoteFragment extends BaseFragment implements IWordStarFragment 
     }
 
     @Override
-
 
     public void updateGlossary(List<String> ydArrayList) {
 

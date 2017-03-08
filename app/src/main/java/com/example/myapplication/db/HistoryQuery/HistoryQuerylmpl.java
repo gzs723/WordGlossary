@@ -63,13 +63,13 @@ public class HistoryQuerylmpl {
     }
 
 
-    public void updateCollection(String word){
+    public void updateCollection(String word,int type){
 
 
         SQLiteDatabase db=mDbHelper.getWritableDatabase();
 
         ContentValues values=new ContentValues();
-        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_COLLECTION,HistoryReaderDbHelper.TURE);
+        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_COLLECTION,type);
 
         String selection= HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD +" = ?";
         String[] selectionArgs = { word };
