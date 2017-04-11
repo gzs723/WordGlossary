@@ -8,6 +8,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.example.myapplication.R;
 import com.example.myapplication.bean.newsbean.JuHeNewsBean;
@@ -29,6 +30,8 @@ public class NewsWebViewActivity extends BaseActivity implements INewsWebActivit
 
     @BindView(R.id.juhe_news_webview)
     WebView mWebView;
+    @BindView(R.id.news_prograss)
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,5 +83,17 @@ public class NewsWebViewActivity extends BaseActivity implements INewsWebActivit
         //okhttp 线程通过rx切换回主线程
         initWebView(html);
 
+    }
+
+    @Override
+    public void showProgressDialog() {
+
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressDialog() {
+
+        mProgressBar.setVisibility(View.GONE);
     }
 }

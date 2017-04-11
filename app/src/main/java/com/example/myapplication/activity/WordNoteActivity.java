@@ -2,7 +2,6 @@ package com.example.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
@@ -14,12 +13,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by 李思言 on 2017/2/9.
+ * Created by lisiyan on 2017/4/5.
  */
 
 public class WordNoteActivity extends BaseActivity implements IWordNoteActivity {
 
-    private String word;
     WordNotePresenterlmpl wordNotePresenterlmpl;
     @BindView(R.id.word_text)
     TextView wordtext;
@@ -27,33 +25,29 @@ public class WordNoteActivity extends BaseActivity implements IWordNoteActivity 
     TextView wordphonetic;
     @BindView(R.id.word_explains)
     TextView wordexplains;
+    private String word;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_word_note);
+        setContentView(R.layout.activity_word_note2);
         ButterKnife.bind(this);
-        wordNotePresenterlmpl=new WordNotePresenterlmpl(this);
+        wordNotePresenterlmpl = new WordNotePresenterlmpl(this);
         initData();
-
-
     }
 
-    private void initData(){
+    private void initData() {
 
-
-        word=getIntent().getStringExtra("word");
+        word = getIntent().getStringExtra("word");
         wordNotePresenterlmpl.getWordNote(word);
     }
-
-
 
     @Override
     public void showWordNote(HistoryWord historyWord) {
 
-        wordtext.setText("单词 ："+historyWord.getWord());
-        wordphonetic.setText("音标 :"+historyWord.getPhonetic());
-        wordexplains.setText("译义 ："+historyWord.getExplains());
+        wordtext.setText(historyWord.getWord());
+        wordphonetic.setText("音标 :" + historyWord.getPhonetic());
+        wordexplains.setText(historyWord.getExplains());
 
     }
 }

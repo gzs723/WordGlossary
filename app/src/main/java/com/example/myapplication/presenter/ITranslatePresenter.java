@@ -1,5 +1,6 @@
 package com.example.myapplication.presenter;
 
+import com.example.myapplication.bean.youdaobean.HistoryWord;
 import com.example.myapplication.bean.youdaobean.YouDaoBean;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface ITranslatePresenter extends BasePresenter {
 
     void getGlossary(String word);
 
-    void addHistorySql(YouDaoBean youDaoBean);
+    void addHistorySql(HistoryWord historyWord);
 
     void getHistorySql(String word);
 
@@ -21,6 +22,8 @@ public interface ITranslatePresenter extends BasePresenter {
 
     void deleteHistorySql(String word);
 
-    void updateCollect(String word);
+    int updateCollect(String word);
+
+
 
 }

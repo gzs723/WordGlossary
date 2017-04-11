@@ -11,7 +11,7 @@ import rx.Observable;
  * Created by 李思言 on 2017/1/19.
  */
 
-public interface JuHeNewsApi {
+public interface  JuHeNewsApi {
 
     //http://v.juhe.cn/toutiao/index?key=02524fb2d1344a1c5abf95d513169d44&type=keji
     @FormUrlEncoded

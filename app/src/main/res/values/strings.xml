@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">词解</string>
     <string name="umeng_socialize_text_qq_key">QQ</string>
     <string name="umeng_deleauth">清除对应授权</string>
     <string name="login">登录/注册</string>
@@ -14,4 +14,5 @@
     <string name="navi_login">登录</string>
     <string name="news">新闻</string>
     <string name="translate">单词查询</string>
+    <string name="author">李思言</string>
 </resources>

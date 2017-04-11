@@ -79,7 +79,7 @@
                 android:background="#aaffff"
                 android:layout_width="50dp"
                 android:layout_height="80dp"
-                android:src="@drawable/star"/>
+                android:src="@drawable/staroff"/>
 
         </LinearLayout>
 

@@ -12,6 +12,6 @@ import java.util.List;
 public interface ITranslateFragment extends IBaseFragment {
 
     //更新视图
-    void updateGlossary(List<String> ydArrayList);
+    void updateGlossary(String ydexplains);
 
 }

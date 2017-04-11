@@ -3,6 +3,8 @@ package com.example.myapplication.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,7 +32,7 @@ import butterknife.ButterKnife;
  * Created by 李思言 on 2016/12/7.
  */
 
-public class NewsFragment extends BaseFragment implements INewsFragment{
+public class  NewsFragment extends BaseFragment implements INewsFragment{
 
     private NewsPresenterlmpl mNewsPresenterlmpl;
     private NewsListAdapter mNewsListAdapter;
@@ -83,7 +85,7 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
     @Override
     public void hideProgressDialog() {
 
-       mProgressBar.setVisibility(View.INVISIBLE);
+       mProgressBar.setVisibility(View.GONE);
        mRefreshLayout.setRefreshing(false);
 
     }
@@ -143,5 +145,6 @@ public class NewsFragment extends BaseFragment implements INewsFragment{
     public void onDestroyView() {
         super.onDestroyView();
         mNewsPresenterlmpl.unsubcrible();
+
     }
 }

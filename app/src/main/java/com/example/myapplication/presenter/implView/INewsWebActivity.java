@@ -7,4 +7,8 @@ package com.example.myapplication.presenter.implView;
 public interface INewsWebActivity {
 
     void updateNews(String html);
+
+    void showProgressDialog();
+
+    void hideProgressDialog();
 }

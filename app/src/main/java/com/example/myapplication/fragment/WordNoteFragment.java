@@ -46,6 +46,7 @@ public class WordNoteFragment extends BaseFragment implements IWordStarFragment 
         View view = inflater.inflate(R.layout.star_fragment, container, false);
         ButterKnife.bind(this, view);
         return view;
+
     }
 
     @Override

@@ -45,18 +45,19 @@ public class HistoryQuerylmpl {
     }
 
 
-    public void insert(YouDaoBean youDaoBean){
+    public void  insert(HistoryWord historyWord){
 
         SQLiteDatabase db=mDbHelper.getWritableDatabase();
 
         ContentValues values=new ContentValues();
 
-        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD,youDaoBean.getQuery());
-        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_TRANSLATE,youDaoBean.getTranslation().get(0));
+        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD,historyWord.getWord());
+        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_TRANSLATE,historyWord.getTranslate());
         values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_COLLECTION,HistoryReaderDbHelper.FALSE);
-        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_PHONETIC,youDaoBean.getBasic().getPhonetic());
+        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_PHONETIC,historyWord.getPhonetic());
         values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_HISTORY,HistoryReaderDbHelper.TURE);
-        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_EXPLAINS,youDaoBean.getBasic().getExplains().get(0));
+
+        values.put(HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_EXPLAINS,historyWord.getExplains());
 
 
         long newRowId=db.insert(HistoryQueryContract.HistoryQueryEntry.TABLE_NAME, null,values);
@@ -114,6 +115,7 @@ public class HistoryQuerylmpl {
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD,
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_TRANSLATE,
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_PHONETIC,
+                HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_COLLECTION,
         };
 
         final String selection= HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_HISTORY+"= ?";
@@ -138,6 +140,7 @@ public class HistoryQuerylmpl {
                     historyWord.setWord(c.getString(1));
                     historyWord.setTranslate(c.getString(2));
                     historyWord.setPhonetic(c.getString(3));
+                    historyWord.setCollection(c.getString(4));
                     historylist.add(historyWord);
                 }while (c.moveToNext());
             }
@@ -218,7 +221,8 @@ public class HistoryQuerylmpl {
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD,
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_TRANSLATE,
                 HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_PHONETIC,
-                HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_EXPLAINS
+                HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_EXPLAINS,
+                HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_COLLECTION
         };
 
         final String selection= HistoryQueryContract.HistoryQueryEntry.COLUMN_NAME_WORD+"= ? ";
@@ -244,6 +248,7 @@ public class HistoryQuerylmpl {
                 historyWord.setTranslate(c.getString(2));
                 historyWord.setPhonetic(c.getString(3));
                 historyWord.setExplains(c.getString(4));
+                historyWord.setCollection(c.getString(5));
             }
         }finally {
             if (c!=null){

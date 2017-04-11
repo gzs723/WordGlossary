@@ -8,4 +8,5 @@
     <color name="border_clo">#cccccc</color>
     <color name="blue">#419DE4</color>
     <color name="text_clo">#333333</color>
+    <color name="grey">#515151</color>
 </resources>

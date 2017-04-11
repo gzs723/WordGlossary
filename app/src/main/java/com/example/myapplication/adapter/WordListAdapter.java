@@ -69,6 +69,11 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     }
 
+    public List<HistoryWord> getList(){
+
+        return historyList;
+    }
+
     public void removelist(int position){
 
         this.historyList.remove(position);
@@ -89,6 +94,11 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
         if (holder instanceof WordViewHolder){
 
+            if (historyList.get(historyList.size()-position-1).getCollection().equals("0")){
+                holder.star.setImageResource(R.drawable.staroff);
+            }else {
+                holder.star.setImageResource(R.drawable.staron);
+            }
             holder.wordtext.setText(historyList.get(historyList.size()-position-1).getWord());
             holder.translatetext.setText(historyList.get(historyList.size()-position-1).getTranslate());
             holder.phonetictext.setText(historyList.get(historyList.size()-position-1).getPhonetic());

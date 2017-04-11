@@ -54,7 +54,6 @@ public class SwipeLayout extends LinearLayout {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-
                 disallowParentsInterceptTouchEvent(getParent());
                 startX = ev.getX();
                 startY = ev.getY();

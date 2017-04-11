@@ -11,6 +11,24 @@ public class HistoryWord {
     private String translate;
     private String explains;
     private String phonetic;
+    private String history;
+    private String collection;
+
+    public String getHistory() {
+        return history;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 
     public String getExplains() {
         return explains;

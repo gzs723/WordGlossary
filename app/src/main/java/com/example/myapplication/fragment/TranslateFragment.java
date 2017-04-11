@@ -118,7 +118,9 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
                         startActivity(intent);
                         break;
                     case COLLECT:
-                        mGlossaryPresenter.updateCollect(word);
+                        int n=mGlossaryPresenter.updateCollect(word);
+                        mWordListAdapter.getList().get(position).setCollection(String.valueOf(n));
+                        mWordListAdapter.notifyDataSetChanged();
                         Toast.makeText(getContext(),"收藏成功",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -170,7 +172,7 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
 
     @Override
     public void hideProgressDialog() {
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -179,16 +181,11 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
     }
 
     @Override
-    public void updateGlossary(List<String> ydArrayList) {
+    public void updateGlossary(String ydexplains) {
 
-        StringBuffer sGlossary = new StringBuffer("");
 
-        for (String s : ydArrayList) {
 
-            sGlossary.append(s + "\n").toString();
-        }
-
-        translate_borde.setText(sGlossary);
+        translate_borde.setText(ydexplains);
 
 
     }

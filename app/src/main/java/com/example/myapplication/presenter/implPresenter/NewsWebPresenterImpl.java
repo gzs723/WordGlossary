@@ -65,8 +65,6 @@ public class NewsWebPresenterImpl extends BasePresenterImpl implements INewsWebP
                         Elements elements = document.select("[class=J-article article]");
                         final String html = elements.outerHtml();
                         subscriber.onNext(html);
-
-
                     }
                 });
 
@@ -86,6 +84,7 @@ public class NewsWebPresenterImpl extends BasePresenterImpl implements INewsWebP
                     @Override
                     public void onNext(String s) {
 
+                        mINewsWebActivity.hideProgressDialog();
                         mINewsWebActivity.updateNews(s);
                     }
 
