@@ -1,23 +1,25 @@
 package com.example.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.webkit.WebView;
 
-import com.example.myapplication.R;
-
-import butterknife.BindView;
+import com.example.myapplication.MainActivity;
 
 /**
- * Created by 李思言 on 2016/11/16.
+ * Created by lisiyan on 2017/4/14.
  */
 
-public class LoginActivity extends BaseActivity{
+public class SplashActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

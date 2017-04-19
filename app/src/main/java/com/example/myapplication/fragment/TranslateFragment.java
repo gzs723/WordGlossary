@@ -8,10 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -96,6 +98,25 @@ public class TranslateFragment extends BaseFragment implements ITranslateFragmen
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_UP:
                         glossary_edit.addFragment(TranslateFragment.this);
+
+                }
+
+                return false;
+            }
+        });
+
+        glossary_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId== EditorInfo.IME_ACTION_SEARCH){
+
+                    Log.d("lsy","key");
+                    mGlossaryPresenter.getGlossary(glossary_edit.getText().toString());
+                    mRecyclerView.setVisibility(View.GONE);
+                    translate_borde.setVisibility(View.VISIBLE);
+                    //隐藏keyboard
+                    hideSoftKeyboard(glossary_edit,getActivity());
+
 
                 }
 
